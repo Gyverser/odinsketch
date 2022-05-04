@@ -1,0 +1,31 @@
+
+
+body {
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    gap: 16px;
+    background-image: linear-gradient(rgb(252, 151, 151), rgb(255, 255, 71));
+}
+
+.container {
+    overflow: hidden;
+    height: 960px;
+    width: 960px;
+    border: 2px solid rgb(81, 83, 83);
+    box-shadow: 2px 2px;
+    border-radius:6px;
+}
+
+.wrapper {
+    display:flex;
+    gap: 24px;
+}
+
+.h1 {
+    font-family:'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+    color:rgb(82, 80, 79);
+}
