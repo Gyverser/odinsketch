@@ -1,76 +1,52 @@
 const containerDiv = document.querySelector('.container');
 const button = document.querySelector('.createBtn');
+const clearBtn = document.querySelector('.clear');
+let squares = 16;
 
-function createDiv16() {
-    for(i = 0; i < 256; i++) {
-        const div = document.createElement('div')
-        containerDiv.appendChild(div)[i];
-        div.className = 'createDiv';
-    }
-    button.removeEventListener('click', createDiv);
+containerDiv.style.display = 'grid';
+containerDiv.style.gridTemplateColumns = `repeat(${squares}, 1fr)`
+containerDiv.style.gridTemplateRows = `repeat(${squares}, 1fr)`;
+
+for (i = 0; i < squares**2; i++) {
+    const div = document.createElement('div');
+    containerDiv.appendChild(div)[i];
+    div.addEventListener('mouseenter', function() {
+        div.style.backgroundColor = 'black';
+    });
 }
 
-function createDiv32() {
-    for(i = 0; i < 1024; i++) {
-        const div = document.createElement('div');
-        containerDiv.appendChild(div)[i];
-        div.className = 'createDiv'
+function createGrid() {
+    const input = prompt('Choose between 1 and 100 squares.')
+    clear();
+    if (input > 100 || input < 0) {
+        clear();
+        alert('Choose a number between 1 and 100');
     };
-}
-
-function createDiv64() {
-    for(i = 0; i < 4096; i++) {
-        const div = document.createElement('div');
-        containerDiv.appendChild(div)[i];
-        div.className = 'createDiv';
-    };
-}
-
-function createDiv100() {
-    for(i = 0; i < 10000; i++) {
-        const div = document.createElement('div');
-        containerDiv.appendChild(div)[i];
-        div.classname = 'createDiv';
-        div.addEventListener('mouseenter', function () {
-            div.style.backgroundColor = 'black';
+    for (i = 0; i < input**2; i++) {
+        const divara = document.createElement('div');
+        containerDiv.appendChild(divara)[i];
+        divara.addEventListener('mouseenter', function() {
+            divara.style.backgroundColor = rgbColor();
         });
-    };
+    }
+    containerDiv.style.display = 'grid'
+    containerDiv.style.gridTemplateColumns = `repeat(${input}, 1fr)`;
+    containerDiv.style.gridTemplateRows = `repeat(${input}, 1fr)`;
 }
 
-function createDiv() {
-    const input = prompt('Choose 16, 32, 64 or 100 squares!');
 
-    if (input === '16') {
-        createDiv16();
-        containerDiv.style.display = 'grid';
-        containerDiv.style.gridTemplateColumns = 'repeat(16, 1fr)';
-        containerDiv.style.gridTemplateRows = 'repeat(16, 1fr)';
-    } else if (input === '32') {
-        createDiv32();
-        containerDiv.style.display = 'grid';
-        containerDiv.style.gridTemplateColumns = 'repeat(32, 1fr)';
-        containerDiv.style.gridTemplateRows = 'repeat(32, 1fr)';
-    } else if (input === '64') {
-        createDiv64();
-        containerDiv.style.display = 'grid';
-        containerDiv.style.gridTemplateColumns = 'repeat(64, 1fr)';
-        containerDiv.style.gridTemplateRows = 'repeat(64, 1fr)';
-    } else if (input === '100') {
-        createDiv100();
-        containerDiv.style.display = 'grid';
-        containerDiv.style.gridTemplateColumns = 'repeat(100, 1fr)';
-        containerDiv.style.gridTemplateRows = 'repeat(100, 1fr)';
-    };
-};
-
-
-
-
+function rgbColor() {
+     let R = Math.floor(Math.random() * 255);
+     let G = Math.floor(Math.random() * 255);
+     let B = Math.floor(Math.random() * 255);
+     return `rgb(${R}, ${G}, ${B})`;
+}
 
 function clear() {
-    
-}
+    while (containerDiv.firstChild){
+    containerDiv.removeChild(containerDiv.lastChild);
+    };    
+};
 
-
-button.addEventListener('click', createDiv);
-
+clearBtn.addEventListener('click', clear);
+button.addEventListener('click', createGrid);
